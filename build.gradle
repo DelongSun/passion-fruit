@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+}
+
+group 'com.toodin'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = "11"
+targetCompatibility = "11"
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    maven { url 'https://maven.aliyun.com/repository/spring/' }
+    mavenCentral()
+    maven { url "https://raw.githubusercontent.com/xingePush/maven-repository/release/" }
+    maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
+}
+
+dependencies {
+
+    implementation (
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-data-jdbc',
+            //'org.springframework.boot:spring-boot-starter-data-redis',
+            'org.springframework.boot:spring-boot-starter-security',
+            'org.springframework.boot:spring-boot-starter-oauth2-resource-server',
+            'org.springframework.security.oauth:spring-security-oauth2:2.5.1.RELEASE',
+
+            "org.apache.commons:commons-lang3:3.9",
+            "org.apache.commons:commons-pool2:2.8.1",
+            "com.google.guava:guava:28.2-jre",
+            "com.squareup.retrofit2:retrofit:2.7.0",
+            "com.squareup.retrofit2:converter-jackson:2.7.0"
+    )
+
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    testCompile 'junit:junit:4.12'
+}
